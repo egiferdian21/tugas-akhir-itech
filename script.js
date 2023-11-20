@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             buttonContainer.insertBefore(completeButton, removeButton);
         }
-
+         
         function addBookToStorage(title, author, year, isComplete) {
             let books = [];
             if (localStorage.getItem("books")) {
