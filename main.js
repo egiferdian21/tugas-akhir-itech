@@ -71,4 +71,40 @@ function RenderBookList(bookData) {
     return;
   }
 }
+
+// halo egiiS
+// Render Book List
+function RenderBookList(bookData)  {
+  if (bookData === null) {
+    return;
+  }
+
+  const containerIncomplete = document.getElementById("incompleteBookshelfList");
+  const containerComplete = document.getElementById("completeBookshelfList");
+
+  containerIncomplete.innerHTML = "";
+  containerComplete.innerHTML = "";
+  for (let book of bookData) {
+    const id = book.id;
+    const title = book.title;
+    const author = book.author;
+    const year = book.year;
+    const isComplete = book.isComplete;
+
+    let bookItem = document.createElement("article");
+    bookItem.classList.add("book_item", "select_item");
+    bookItem.innerHTML = "<h3 name = " + id + ">" + title + "</h3>";
+    bookItem.innerHTML += "<p>Penulis: " + author + "</p>";
+    bookItem.innerHTML += "<p>Tahun: " + year + "</p>";
+
+    let containerActionItem = document.createElement("div");
+    containerActionItem.classList.add("action");
+
+    const moveButton = CreateMoveButton(book, function (event) {
+      FinishedBookHandler(event.target.parentElement.parentElement);
+
+      const bookData = GetBookList();
+      ResetAllForm();
+      RenderBookList(bookData);
+    });
   
